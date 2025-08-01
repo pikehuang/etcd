@@ -4,7 +4,7 @@
 /gopath
 /gopath.proto
 /release
-/bin
+#/bin
 *.etcd
 *.log
 *.swp
