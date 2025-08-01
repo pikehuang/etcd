@@ -105,7 +105,7 @@ type Authenticator interface {
 
 func (s *EtcdServer) Range(ctx context.Context, r *pb.RangeRequest) (*pb.RangeResponse, error) {
 	// 打印日志
-	s.Logger().Info("range debug", zap.String("key", string(r.GetKey())), zap.String("range_end", string(r.GetRangeEnd())))
+	s.Logger().Info("range debug pike", zap.String("key", string(r.GetKey())), zap.String("range_end", string(r.GetRangeEnd())))
 	var span trace.Span
 	ctx, span = traceutil.Tracer.Start(ctx, "range", trace.WithAttributes(
 		attribute.String("range_begin", string(r.GetKey())),
