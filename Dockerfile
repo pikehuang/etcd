@@ -1,5 +1,5 @@
 ARG ARCH=amd64
-FROM --platform=linux/${ARCH} mirrors.tencent.com/tencentos/tencentos4-microdnf:latest
+FROM --platform=linux/${ARCH} pike-gz.tencentcloudcr.com/dev/tencentos/tencentos4-microdnf:latest
 
 ADD etcd /usr/local/bin/
 ADD etcdctl /usr/local/bin/
