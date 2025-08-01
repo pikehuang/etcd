@@ -1,5 +1,16 @@
-ARG ARCH=amd64
-FROM --platform=linux/${ARCH} pike-gz.tencentcloudcr.com/dev/tencentos/tencentos4-microdnf:latest
+# 阶段 1：构建（包含 Go 工具链）
+FROM golang:1.22 AS builder
+
+WORKDIR /app
+
+# 复制 go.mod 和 go.sum（利用 Docker 缓存加速依赖下载）
+COPY go.mod go.sum ./
+RUN go mod download
+
+COPY . .
+RUN make build
+
+FROM pike-gz.tencentcloudcr.com/dev/tencentos/tencentos4-microdnf:latest
 
 ADD ./bin/etcd /usr/local/bin/
 ADD ./bin/etcdctl /usr/local/bin/
