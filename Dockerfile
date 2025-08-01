@@ -12,9 +12,9 @@ RUN make build
 
 FROM pike-gz.tencentcloudcr.com/dev/tencentos/tencentos4-microdnf:latest
 
-ADD ./bin/etcd /usr/local/bin/
-ADD ./bin/etcdctl /usr/local/bin/
-ADD ./bin/etcdutl /usr/local/bin/
+COPY --from=builder /app/bin/etcd /usr/local/bin/
+COPY --from=builder /app/bin/etcdctl /usr/local/bin/
+COPY --from=builder /app/bin/etcdutl /usr/local/bin/
 
 WORKDIR /var/etcd/
 WORKDIR /var/lib/etcd/
